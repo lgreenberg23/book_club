@@ -1,0 +1,15 @@
+<h1> Edit a book if some details are incorrect </h1>
+
+<%= form_for @book do |f| %>
+	<%= f.label 'Title:'%>
+	<%= f.text_field :title %><br>
+	<%= f.label 'Author:' %>
+	<%= f.text_field :author %><br>
+	<%= f.label 'Genre:' %>
+	<%= f.text_field :genre %><br>
+	<%= f.label 'Description' %>
+	<%= f.text_field :description %><br>
+	<% f.label 'Length (number of pages):' %>
+	 <%= f.text_field :length_in_pages %><br>
+	 <%= f.submit %>
+	 <% end %>

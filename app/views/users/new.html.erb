@@ -1,0 +1,10 @@
+<h1>Become a new user!</h1>
+
+<%= form_for @user do |f| %>
+	User Name: <%= f.text_field :name %><br>
+	Select a group to join: <%= collection_select(:user, :group_id, Group.all, :id, :name, prompt: true) %><br>
+	Email Address: <%= f.text_field :email %><br>
+	Password: <%= f.password_field :password %><br>
+	Confirm Password: <%= f.password_field :confirm_password %><br>
+	<%= f.submit %>
+<% end %>

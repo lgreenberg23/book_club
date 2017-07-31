@@ -1,0 +1,10 @@
+<h1> Create a new book discussion for your club </h1> 
+
+<%= flash[:message] %>
+<%= form_for @user do |f| %>
+	Meeting date and Time: <%= f.datetime_field :time %><br>
+	Meeting place <%= f.text_field :place %><br>
+	Select a book to read: <%= collection_select(:meeting, :book_id, Book.all, :id, prompt: true) %><br> #the original also had a name
+	
+	<%= f.submit %>
+<% end %>

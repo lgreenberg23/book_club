@@ -1,0 +1,11 @@
+
+<h1> Here are the discussions your club has held so far: </h1>
+<br>
+You read: <%= @book %><br>
+You met on: <%= @meeting.time %><br>
+You met at: <%= @meeting.place %><br>
+Them members in attendence were: 
+<% @members.each do |member|  %>
+<li><%= link_to member.name, user_path(member) %></li>
+<% end %>
+

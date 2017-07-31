@@ -1,0 +1,17 @@
+<h1> Edit your Group </h1> 
+
+ <%= form_for @group do |f| %>
+ 	<%= f.label "Name" %>
+ 	<%= f.text_field :name %>
+ 	<br>
+ 	<%= f.label "Size" %>
+ 	<%= f.number_field :size %>
+ 	<br>
+ 	<%= f.label "How often does this group meet?" %>
+ 	<%= f.text_field :frequency_of_meeting %>
+ 	<br>
+ 	<%= f.label "What genre of books does it read?" %>
+ 	<%= f.text_field :genres_read %>
+ 	<br>
+ 	<%= f.submit 'Edit your Group - DONT STOP READING' %>
+ 	<% end %>

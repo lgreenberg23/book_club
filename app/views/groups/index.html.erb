@@ -1,0 +1,7 @@
+<h1> See all the groups </h1>
+
+<% @groups.each do |group| %>
+	<%= link_to group.name, group_path(group) %>
+	<% end %>
+
+<%= link_to("create a new group", new_group_path) %>

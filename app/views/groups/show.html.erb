@@ -1,0 +1,19 @@
+<h1><%= @group.name %></h1>
+
+<p><%= @group.size %></p> 
+<br> 
+<p><%= @group.frequency_of_meeting %></p>
+<br>
+<p><%= @group.genres_read %></p> 
+
+
+<%= link_to "Edit your group", edit_group_path %>
+
+<%=  %>
+
+<%= link_to("User list", ) %>
+
+<div>
+<%= @group.name %> 
+ <%= link_to "Delete", @group, method: :delete, data: { confirm: "Really?" } %>
+</div>

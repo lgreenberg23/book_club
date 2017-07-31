@@ -1,0 +1,8 @@
+<h1><%= "Hello, #{@user.name}!" %></h1>
+<ul>
+	<li>Email Address: <%= @user.email %></li>
+	<li>Book Club Group: <%= @group.name %></li>
+
+<%= link_to "Edit Profile", edit_user_path(@user) %><br>
+<%= link_to "Log Out", logout_path, method: 'POST' %><br>
+<%= link_to "Delete Account & Become Illiterate", @user, method: :delete, data: { confirm: "Really?" } %>

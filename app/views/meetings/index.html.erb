@@ -1,0 +1,6 @@
+<h1> Here are all the past meetings </h1> 
+
+<% @meetings.each do |mtg| %>
+	<li><%= link_to mtg.name, meeting_path(mtg) %></li> 
+	<% end %>
+

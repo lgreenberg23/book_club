@@ -1,0 +1,70 @@
+Rails Project: Book Club
+
+Models:
+	Group
+		- have many members
+		- has a wishlist
+		- has many meetings
+		- has many books through meetings
+		- has many books through wishlist
+
+		name : string
+		genres_read : string
+		size : integer
+		frequency_of_meeting :string 
+
+
+	Member
+		- belongs to a group
+		- has many meetings
+		- has many books through meetings
+
+		name
+		email
+		password_digest
+		number_of_meetings_attended
+			-default to 0 but every time you attend it increments
+			-after 2 you can schedule a meeting
+		group_id
+
+
+	Book
+		- has many meetings
+		- has many members/readers through meeting
+		- has many wish_lists
+
+		title
+		author
+		genre
+		description
+		length_in_pages
+
+
+	Meeting
+		- belongs to a book
+		- has many members through members-meetings
+
+		time
+		place
+		book_id
+
+	WishList
+		- has many books
+		- belongs to a group
+
+		-book_id
+		_group_id
+
+
+	members_meetings
+		-belongs to 
+
+		
+		- member ID
+		- meeting ID
+
+
+
+keep track of who is in the club
+what books you have read
+book 

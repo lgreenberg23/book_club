@@ -1,0 +1,5 @@
+<h1> Here are all the books we have information for </h1>
+
+<% @books.each do |book| %>
+	<%= link_to(book.title, book_path(book)) %>
+	<% end %>
