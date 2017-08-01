@@ -1,0 +1,7 @@
+<h3>Success! You are attending <%= link_to @book.title, book_path(@book) %></h3>
+
+<ul>
+	<li><%= link_to "Return to Profile", user_path(@user) %></li>
+	<li><%= link_to "Return to Meeting", meeting_path(@meeting)%></li>
+	<li><%= link_to "Return to Group", group_path(@group)%></li>
+</ul>

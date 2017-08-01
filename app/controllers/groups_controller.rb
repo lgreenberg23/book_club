@@ -11,12 +11,16 @@ class GroupsController < ApplicationController
 	end
 
 	def create 
+		# byebug
 		@group = Group.create(group_params)
 		redirect_to group_path(@group) 
 	end
 
 	def show
 		@group = current_group
+		@user = current_user
+		users = User.all
+		@group_users = users.select {|user| user.group_id == @group.id}
 	end
 
 	def edit
@@ -47,6 +51,10 @@ class GroupsController < ApplicationController
 
 	def current_group
 		Group.find(params[:id])
+	end
+
+	def current_user
+		User.find_by(id: session[:user_id])
 	end
 
 end

@@ -1,10 +1,17 @@
 <h1> Create a new book discussion for your club </h1> 
 
-<%= flash[:message] %>
-<%= form_for @user do |f| %>
-	Meeting date and Time: <%= f.datetime_field :time %><br>
-	Meeting place <%= f.text_field :place %><br>
-	Select a book to read: <%= collection_select(:meeting, :book_id, Book.all, :id, prompt: true) %><br> #the original also had a name
+<% if @user.meetings_attended > 1 || @user.admin %>
+	<%= form_for @meeting do |f| %>
+		Meeting date and Time: <%= f.datetime_field :time %><br>
+		Meeting place <%= f.text_field :place %><br>
+		Select a book to read: <%= collection_select(:meeting, :book_id, Book.all, :id, :title, prompt: true) %><br> 
+			<%= f.submit %>
+			<% end %>
+<% else %>
+
+	<div> You have to attend at least 2 meetings before you can create one for your group! Look through a list of available meetings to attend. </div>
+
+	<%= link_to "See all Meetings", meetings_path %>
 	
-	<%= f.submit %>
+
 <% end %>
