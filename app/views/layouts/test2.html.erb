@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>BookClub</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="<%= meetings_path %>"/>Meetings</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+           <!--  nav here -->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+        
+              <li><a href="/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            
+
+    </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+    <%= yield %>
+</div>

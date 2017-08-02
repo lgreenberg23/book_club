@@ -4,7 +4,7 @@
 	<div>
 	<ul>
 		<li>Email Address: <%= @user.email %></li>
-		<li>Book Club Group: <%= @group.name %></li>
+		<li>Book Club Group: <%= link_to @group.name, group_path(@group) %></li>
 		<li>Meetings Attended: <%= @user.meetings_attended %></li>
 		<% if @user.admin %>
 			<li>You are the admin for this group. </li>
@@ -14,24 +14,29 @@
 
 	<div>
 	<ul>
-		<h3>Past meetings you have attended:</h3>
-		<% @meetings.each do |meeting| %>
-		<li><%= link_to meeting.name, meeting_path(meeting) %></li>
+		<% if @meetings != nil %>
+		<h4>Upcoming Meetings:</h4>
+			<% @meetings.each do |meeting| %>
+			<li><%= link_to meeting.name, meeting_path(meeting) %></li>
+			<% end %>
+		<% else %>
+		You have no upcoming meetings.
 		<% end %>
 	</ul>
 	</div>
 
-
 	<%= link_to "Edit Profile", edit_user_path(@user) %><br>
-	<%= link_to "Log Out", logout_path, method: 'POST' %><br>
 	<%= link_to "Delete Account & Become Illiterate", @user, method: :delete, data: { confirm: "Really?" } %>
 
 	<br>
-	<%= link_to "See your group", group_path(@group) %><br>
 
 <% else %>
-
-	<h1>This isn't you!</h1>
+<h3><%= "#{@user.name}'s Profile" %></h3>
+<ul>
+	<li>Email Address: <%= @user.email %></li>
+		<li>Book Club Group: <%= @group.name %></li>
+		</ul>
 	<%= link_to "Return to your profile", user_path(session[:user_id]) %>
+	<%= link_to "Return to your group", group_path(@group) %>
 
 <% end %>

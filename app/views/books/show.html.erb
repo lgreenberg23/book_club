@@ -3,4 +3,9 @@
 Author: <%= @book.author %><br>
 Genre: <%= @book.genre %><br>
 Description: <%= @book.description %><br>
-Length: <%= @book.length_in_pages %> pages
+Length: <%= @book.length_in_pages %> pages <br><br>
+
+
+<%= link_to("Go back to see the other books your group has read", books_path) %><br><br>
+
+<%= link_to("Create a discussion meeting for this book.", new_meeting_path) %>

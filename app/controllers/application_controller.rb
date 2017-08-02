@@ -1,26 +1,37 @@
+require 'byebug'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  # before_filter :login_check
 
-  helper_method :login_check
+  helper_method :logged_in_user, :logged_in, :user_group
 
-  def current_user
-     @current_user ||= User.find_by(id: session[:user_id])
+  def logged_in_user
+     @logged_in_user ||= User.find_by(id: session[:user_id]) 
   end
 
-  	def group
-  		@group = Group.find(@current_user.group_id)
+  	def user_group
+      if logged_in
+        @user = logged_in_user
+    		@user_group = Group.find(@user.group_id)
+      end
   	end
 
+# => WORK ON THIS PLZ
+	# def user_meeting
+	#   @user = current_user
+ #    @group = Group.find_by(id: @user.group_id)
+ #    meeting_users = MeetingUser.all.select {|mtg_usr| mtg_usr.user_id == @user.id }
+ #    #this is an array of user IDs
+ #    meetings = meeting_users.collect {|mtg_user| mtg_user.meeting_id}
+ #    #this should be an array of user instances
+ #    @meetings = meetings.collect {|at| Meeting.find(at)}
+	# end
 
-	def current_meeting
-		Meeting.find(params[:id])
-	end
 
 
-  def login_check
-  	!!current_user
+  def logged_in
+  	!!logged_in_user
   end
 
   

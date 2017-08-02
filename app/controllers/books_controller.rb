@@ -2,11 +2,15 @@ class BooksController < ApplicationController
 
 
 	def index
-		@books = Book.all 
+		@all_books = Book.all 
+		@group = user_group
+		meetings = @group.meetings
+		@books = meetings.collect {|mtg| mtg.book}
 	end
 
 	def new
 		@book = Book.new
+		# @book.meetings.build(meeting: 'new')
 	end
 
 	def create

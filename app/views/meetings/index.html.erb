@@ -1,10 +1,17 @@
-<h1> These are your group's meetings:</h1> 
 
-<% @meetings.select do |meeting| %>
+<h2> Upcoming Meetings </h2>
+<% @future_meetings.select do |meeting| %>
 	<% if meeting.group_id == @user.group_id %>
-		<li><%= link_to meeting.name, meeting_path(meeting) %></li> 
+			<li><%= link_to meeting.name, meeting_path(meeting) %></li>
 	<% end %>
-<% end %>
+<% end %><br>
+
+<h2> Past Meetings </h2>
+<% @past_meetings.select do |meeting| %>
+	<% if meeting.group_id == @user.group_id %>
+			<li><%= link_to meeting.name, meeting_path(meeting) %></li> 
+	<% end %>
+<% end %><br>
 
 <h3>Not satisfied? <%= link_to "Create a new Meeting", new_meeting_path %></h3>
 

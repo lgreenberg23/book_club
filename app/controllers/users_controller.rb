@@ -1,3 +1,5 @@
+require 'byebug'
+
 class UsersController < ApplicationController
 
 	def index
@@ -19,14 +21,26 @@ class UsersController < ApplicationController
 		redirect_to user_path(@user)
 	end
 
+	def admin
+		@user = User.new
+		# @group = Group.find(params[:id])
+	end
+
+
 	def show
 		@user = current_user
 		@group = Group.find_by(id: @user.group_id)
+		#this is a collection of meeting user instances where the user has signed up for that meeting
 		meeting_users = MeetingUser.all.select {|mtg_usr| mtg_usr.user_id == @user.id }
-		#this is an array of user IDs
-		meetings = meeting_users.collect {|mtg_user| mtg_user.meeting_id}
-		#this should be an array of user instances
-		@meetings = meetings.collect {|at| Meeting.find(at)}
+		
+		#this is an array of meeting IDs
+		meeting_ids = meeting_users.collect {|mtg_user| mtg_user.meeting_id}
+		
+		#this should be an array of meeting instances
+		# byebug
+		meetings = meeting_ids.collect {|id| Meeting.find_by(id: id)}
+		@meetings = meetings.select {|mtg| mtg.time > Time.now}
+
 	end
 
 	def edit
@@ -54,7 +68,10 @@ class UsersController < ApplicationController
 		end
 
 		def current_user
+			if params[:id] != nil
+				# byebug
 			User.find(params[:id])
+			end
 		end
 
 end

@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
 	def create 
 		# byebug
 		@group = Group.create(group_params)
-		redirect_to group_path(@group) 
+		redirect_to new_admin_path
 	end
 
 	def show
