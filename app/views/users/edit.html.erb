@@ -3,5 +3,6 @@
 <%= form_for @user do |f| %>
 	Select a group to join: <%= collection_select(:user, :group_id, Group.all, :id, :name, prompt: true) %><br>
 	Email Address: <%= f.text_field :email %><br>
+	Are you the new Admin? <%= f.check_box :admin %><br>
 	<%= f.submit %>
 <% end %>

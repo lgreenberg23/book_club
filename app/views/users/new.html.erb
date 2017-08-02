@@ -4,6 +4,7 @@
 	User Name: <%= f.text_field :name %><br>
 	Select a group to join: <%= collection_select(:user, :group_id, Group.all, :id, :name, prompt: true) %><br>
 	Email Address: <%= f.text_field :email %><br>
+	Are you the Admin? <%= f.check_box :admin %><br>
 	Password: <%= f.password_field :password %><br>
 	Confirm Password: <%= f.password_field :confirm_password %><br>
 	<%= f.submit %>

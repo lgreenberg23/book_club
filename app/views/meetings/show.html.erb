@@ -1,11 +1,29 @@
+<% if @meeting.group_id == @user.group_id %>
+	<h1> Meeting for <i><%= @book.title %></i></h1>
+	<br>
+	Book: <%= link_to @book.title, book_path(@book) %><br>
+	Meeting Time: <%= @meeting.time %><br>
+	Meeting Location: <%= @meeting.place %><br>
+	Members in Attendance: 
+	<% @attendees.each do |user|  %>
+	<li><%= link_to user.name, user_path(user) %></li>
+	<% end %>
+	<br>
+	
+	<% if @attended.length < 1%>
+	<div>
+	<%= link_to "Attend this meeting!", attend_meeting_path(@meeting) %>
+	</div>
+	<% else %>
+	<%= link_to "I can't go to this meeting anymore...", unattend_meeting_path(@meeting) %>
+	<% end %>
 
-<h1> Here are the discussions your club has held so far: </h1>
-<br>
-You read: <%= @book %><br>
-You met on: <%= @meeting.time %><br>
-You met at: <%= @meeting.place %><br>
-Them members in attendence were: 
-<% @members.each do |member|  %>
-<li><%= link_to member.name, user_path(member) %></li>
+
+
+<% else %>
+	<h1>You do not have access to this meeting</h1>
+	<%= link_to "Return to your group's meetings", meetings_path %>
 <% end %>
+
+
 
