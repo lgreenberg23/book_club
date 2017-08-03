@@ -20,6 +20,7 @@ class BooksController < ApplicationController
 
 	def show
 		@book = current_book
+		@wishlist = user_wishlist
 	end
 
 	def edit
@@ -36,6 +37,14 @@ class BooksController < ApplicationController
 		@book = current_book
 		@book.destroy
 		redirect_to books_path
+	end
+
+	def add_to_wishlist
+		@book = current_book
+		@wishlist = user_wishlist
+		@wishlistbook = WishlistBook.create(book: @book, wishlist: @wishlist)
+
+		redirect_to wishlist_path(@wishlist)
 	end
 
 	private

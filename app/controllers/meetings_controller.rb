@@ -21,32 +21,26 @@ class MeetingsController < ApplicationController
 	def new
 		# if @user.meetings_attended >= 2
 		@meeting = Meeting.new
-		@meeting.book = Book.new
+		@book = Book.new
+		@meeting.book = @book 
 		@user = current_user
 		# else, flash[:message] = "You need to read more books first."
 
 	end
 
 	def create
-		# params = {
-		#   'meeting': {
-		#     time: '...',
-		#     location: '...'       
-		#     place: '...'       
-		#     book_id: '...'       
-		#     book: {
-		#       title: '...',
-		#       pages: '...'
-		#     }      
-	    #   }
-		# }
-	# byebug
-		book = Book.new(book_params)
+
+		@book = ''
+		# byebug
+		if params[:book]
+			@book = Book.new(book_params)
+		else
+			@book = Book.find(params[:book_id])
+		end
 		@meeting = Meeting.new(meeting_params)
-byebug
-		if book.valid?
-		  book.save
-		  @meeting.book = book 
+		if @book.valid?
+		  @book.save
+		  @meeting.book = @book 
 		end
 
 		@user = current_user
@@ -58,7 +52,7 @@ byebug
 		# @meeting.users_meetings_id = params[:meeting][:users_meetings_id].to_i
 		
 		@meeting.save
-		@user.meetings_attended
+		# @user.meetings_attended
 		 # byebug
 		redirect_to meeting_path(@meeting)
 	end
@@ -100,18 +94,30 @@ byebug
 	def attend
 		@user = current_user
 		@meeting = current_meeting
-		MeetingUser.create(user: @user, meeting: @meeting)
 		@book = Book.find(@meeting.book_id)
 		@group = Group.find(@user.group_id)
+		@mtg_usr= MeetingUser.new(user: @user, meeting: @meeting)
+
+		respond_to do |format|
+	      if @mtg_usr.save
+	        # Tell the UserMailer to send a welcome email after save
+	        ReminderMailer.reminder_email(@user, @meeting, @group).deliver_later(wait_until: (@meeting.time - 2.days))
+	 
+	        format.html { render action: 'attend', notice: 'User was successfully created.' }
+	        format.json { render json: @user, status: :created, location: @user }
+	      else
+	        format.html { redirect_to meeting_path(@meeting) }
+	        format.json { render json: @user.errors, status: :unprocessable_entity }
+	      end
+	    end
 	end
 
 	def unattend
 		@user = current_user
 		@meeting = current_meeting
 				# byebug
-		instance = MeetingUser.find_by(user_id: @user.id)
-		@instance = instance.select {|row| row.user_id == @user.id && row.meeting_id == @meeting.id }
-		@instance.delete
+		meet_user = MeetingUser.find_by(user: @user, meeting: @meeting)
+		meet_user.destroy
 
 		redirect_to meetings_path
 	end
@@ -123,8 +129,8 @@ byebug
 	end
 
 	def book_params
-		byebug
-		params.require(:meeting).require(:book).permit(:title, :author, :genre, :description, :length_in_pages)
+		# byebug
+		params.require(:book).permit(:title, :author, :genre, :description, :length_in_pages)
 	end
 
 	def current_meeting

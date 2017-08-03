@@ -1,10 +1,15 @@
-<h1><%= @book.title %></h1><br>
+<h1><%= @book.title.split.map(&:capitalize).join(' ') %></h1><br>
 
 Author: <%= @book.author %><br>
 Genre: <%= @book.genre %><br>
 Description: <%= @book.description %><br>
 Length: <%= @book.length_in_pages %> pages <br><br>
 
+<%= link_to "Edit this book", edit_book_path(@book) %><br>
+
+<% if !WishlistBook.find_by(book: @book) %>
+	<%= link_to("Add to your group's wishlist!", add_to_wishlist_path(@book)) %><br>
+<% end %>
 
 <%= link_to("Go back to see the other books your group has read", books_path) %><br><br>
 

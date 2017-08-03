@@ -10,6 +10,10 @@ class Meeting < ApplicationRecord
 		"#{self.time.strftime("%b %d, %Y")} at #{self.time.strftime("%I %p")}, #{book.title}"
 	end
 
+	def email_time
+		"#{self.time.strftime("%b %d, %Y")} at #{self.time.strftime("%I %p")}"
+	end
+
 
 
 end

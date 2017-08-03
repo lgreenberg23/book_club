@@ -1,1 +1,7 @@
-show.html.erb
+<h1> THIS IS THE WISHLIST PAGE </h1>
+<h3>This is the Wishlist for <%= link_to @group.name, group_path(@group) %></h3>
+	<ul>
+		<% @selected_books.uniq.each do |book| %>
+		<li><%= link_to book.title, book_path(book) %> <%= button_to "Upvote", upvote_path(@wishlist) %><%= button_to "Downvote", downvote_path(@wishlist) %>Upvote Total: <%= book.votes_for.size %> </li>
+		<% end %>
+	</ul>

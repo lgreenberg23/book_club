@@ -8,7 +8,7 @@ class Group < ApplicationRecord
 	has_many :users
 	has_many :meetings
 	has_many :books, through: :meetings
-	# has a wishlist
-	# has many books through wishlist
+	has_one :wishlist
+	has_many :books, through: :wishlist
 
 end

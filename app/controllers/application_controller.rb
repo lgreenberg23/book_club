@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  helper_method :logged_in_user, :logged_in, :user_group
+  helper_method :logged_in_user, :logged_in, :user_group, :user_wishlist
 
   def logged_in_user
      @logged_in_user ||= User.find_by(id: session[:user_id]) 
@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
     		@user_group = Group.find(@user.group_id)
       end
   	end
+
+    def user_wishlist
+      group = user_group
+      @wishlist = group.wishlist
+    end
 
 # => WORK ON THIS PLZ
 	# def user_meeting

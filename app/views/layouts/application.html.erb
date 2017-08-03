@@ -19,7 +19,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Book Clubr
+      <a class="navbar-brand" href="/">Book Clubbr
       </a>
     </div>
 
@@ -30,6 +30,7 @@
         <li class="active"><a href="<%= group_path(user_group) %>"><%= user_group.name %> Profile <span class="sr-only">(current)</span></a></li>
         <li><a href="<%= meetings_path %>">Meetings</a></li>
         <li><a href="<%= books_path %>">Books</a></li>
+        <li><a href="<%= wishlist_path(user_wishlist) %>">Wishlist</a></li>
           </ul>
       
         </li>

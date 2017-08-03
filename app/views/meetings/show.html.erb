@@ -10,12 +10,14 @@
 	<% end %>
 	<br>
 	
-	<% if @attended.length < 1%>
-	<div>
-	<%= link_to "Attend this meeting!", attend_meeting_path(@meeting) %>
-	</div>
+	<% if MeetingUser.find_by(user: @user, meeting: @meeting) %>
+		<div>
+			<%= link_to "Unattend this meeting!", unattend_meeting_path(@meeting) %>
+		</div>
 	<% else %>
-	<%= link_to "I can't go to this meeting anymore...", unattend_meeting_path(@meeting) %>
+		<div>
+			<%= link_to "Attend this meeting!", attend_meeting_path(@meeting) %>
+		</div>
 	<% end %>
 
 

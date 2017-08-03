@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801152504) do
+ActiveRecord::Schema.define(version: 20170803191055) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170801152504) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "meeting_users", id: false, force: :cascade do |t|
+  create_table "meeting_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "meeting_id"
   end
@@ -54,6 +54,34 @@ ActiveRecord::Schema.define(version: 20170801152504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.string "votable_type"
+    t.integer "votable_id"
+    t.string "voter_type"
+    t.integer "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+    t.index ["voter_type", "voter_id"], name: "index_votes_on_voter_type_and_voter_id"
+  end
+
+  create_table "wishlist_books", force: :cascade do |t|
+    t.integer "wishlist_id"
+    t.integer "book_id"
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "meeting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
