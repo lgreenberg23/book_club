@@ -1,10 +1,24 @@
 <h2> See all active Groups:</h2>
 
+<table class="table table-striped table-hover ">
+	<thead>
+	    <tr>
+	      <th><h4>Group Name</h4></th>
+	      <th><h4>Max Number of Members</h4></th>
+	      <th><h4>Current Number of Members</h4></th>
+	    </tr>
+  	</thead>
+	<tbody>
+	 <tr>
+		<% @groups.each do |group| %>
+		<td><h4><%= link_to group.name, group_path(group) %></h4></td>
+		<td><h4><%= group.size %></h4></td>
+		<td><h4><%= group.users.size %></h4></td>
+		</tr>	
+		<% end %>
+	</tbody>
+</table>	
 
-<% @groups.each do |group| %>
-	<%= link_to group.name, group_path(group) %>
-	<% end %>
-
-	<br><br>
+	<br>
 
 <%= link_to("Create a New Group", new_group_path, {class: "btn btn-primary"}) %>

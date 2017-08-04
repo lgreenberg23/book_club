@@ -1,6 +1,26 @@
 <h2>Books in the Wishlist for <%= link_to @group.name, group_path(@group) %></h2>
-	<ul>
-		<% @selected_books.uniq.each do |book| %>
-		<li><%= link_to book.title, book_path(book) %> <%= button_to "Upvote", upvote_path(@wishlist) %><%= button_to "Downvote", downvote_path(@wishlist) %>Upvote Total: <%= book.votes_for.size %> </li>
-		<% end %>
-	</ul>
+
+<table class="table table-striped table-hover ">
+	<thead>
+    <tr>
+      <th><h4>Rank</h4></th>
+      <th><h4>Title</h4></th>
+      <th><h4>Number of Upvotes</h4></th>
+      <th><h4>Number of Downvotes</h4></th>
+      <th><h4>Upvote</h4></th>
+      <th><h4>Downvote</h4></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    	<% @selected_books.uniq.each do |book| %>
+    	 <th><h4>*</h4></th>
+		 <th><h4><%= link_to book.title, book_path(book) %></h4></th>
+		 <th><h4><%= book.votes_for.size %></h4></th>
+		 <th><h4><%= book.votes_for.size %></h4></th>
+		 <th><h4><%= button_to "Upvote", upvote_path(@wishlist) %></h4></th>
+		 <th><h4><%= button_to "Downvote", downvote_path(@wishlist) %></h4></th>
+    </tr>
+    <% end %>
+	</tbody>
+</table><br>

@@ -1,16 +1,31 @@
 <h1><%= @book.title.split.map(&:capitalize).join(' ') %></h1><br>
 
-Author: <%= @book.author %><br>
-Genre: <%= @book.genre %><br>
-Description: <%= @book.description %><br>
-Length: <%= @book.length_in_pages %> pages <br><br>
+<table class="table table-striped table-hover ">
+	<thead>
+    <tr>
+      <th><h4>Author</h4></th>
+      <th><h4>Genre</h4></th>
+      <th><h4>Length</h4></th>
+      <th><h4>Description</h4></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><h4><%= @book.author %></h4></th>
+      <th><h4><%= @book.genre %></h4></th>
+      <th><h4><%= @book.length_in_pages %> Pages</h4></th>
+      <th><h4><%= @book.description %></h4></th>
+    </tr>
+	</tbody>
+</table><br>
 
-<%= link_to "Edit this book", edit_book_path(@book) %><br>
+
+<%= link_to("Edit this Book", edit_book_path(@book), {class: "btn btn-primary"} ) %>
 
 <% if !WishlistBook.find_by(book: @book) %>
-	<%= link_to("Add to your group's wishlist!", add_to_wishlist_path(@book)) %><br>
+	<%= link_to("Add to #{@wishlist.group.name}'s Wishlist", add_to_wishlist_path(@book), {class: "btn btn-primary"}) %>
 <% end %>
 
-<%= link_to("Return to the catalogue", books_path) %><br><br>
+<%= link_to("Create a Meeting for this Book", new_meeting_path, {class: "btn btn-primary"}) %><br><br>
 
-<%= link_to("Create a discussion meeting for this book", new_meeting_path) %>
+<%= link_to("Return to the catalogue", books_path, {class: "btn btn-info"} )%>

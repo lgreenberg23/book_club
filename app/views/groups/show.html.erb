@@ -3,22 +3,47 @@
 	<h1><%= @group.name %></h1>
 
 
+	<table class="table table-striped table-hover ">
+	<thead>
+	    <tr>
+	      <th><h4>Max Number of Members</h4></th>
+	      <th><h4>Current Number of Members</h4></th>
+	      <th><h4>Frequency of Meeting</h4></th>
+	      <th><h4>Preferred Genre</h4></th>
+	    </tr>
+  	</thead>
+	<tbody>
+	 <tr>
+		<td><h4><%= @group.size %></h4></td>
+		<td><h4><%= @group.users.size %></h4></td>
+		<td><h4><%= @group.frequency_of_meeting %></h4></td>
+		<td><h4><%= @group.genres_read %></h4></td>
+		</tr>	
+	</tbody>
+</table>	<br>
+	
+	<%= link_to("See all meetings for this group", meetings_path, {class: "btn btn-primary"}) %><br><br>
 
-	<p>Number of Members: <%= @group.size %></p> 
-	<br> 
-	<p>This group meets: <%= @group.frequency_of_meeting %></p>
-	<br>
-	<p>This group reads mainly: <%= @group.genres_read %></p> 
-	<br>
-	<%= link_to "See all meetings for this group", meetings_path %><br>
 
-
-	<h3>Here are the current members of the group:</h3>
-	<ul>
-	<% @group_users.each do |user| %>
-		<li><%= link_to user.name, user_path(user) %></li>
-	<% end %>
-	</ul>
+	<h2>Here are the current members of the group:</h2>
+	<table class="table table-striped table-hover ">
+		<thead>
+		    <tr>
+		      <th><h4>Name</h4></th>
+		      <th><h4>Email</h4></th>
+		      <th><h4>Number of Meetings Attended</h4></th>
+		    </tr>
+	  	</thead>
+		<tbody>
+		 <tr>
+		 	<% @group_users.each do |user| %>
+			<td><h4><%= link_to user.name, user_path(user) %></h4></td>
+			<td><h4><%= user.email %></h4></td>
+			<td><h4><%= user.meetings_attended %></h4></td>
+			</tr>
+			<% end %>		
+		</tbody>
+	</table>	
 
 	<br>
 	<% if @user.admin %>

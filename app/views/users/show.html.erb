@@ -1,30 +1,43 @@
 <% if session[:user_id] == @user.id %>
 
 	<h1><%= "Hello, #{@user.name}!" %></h1>
-	<div>
-	<ul>
-		<li>Email Address: <%= @user.email %></li>
-		<li>Book Club Group: <%= link_to @group.name, group_path(@group) %></li>
-		<li>Meetings Attended: <%= @user.meetings_attended %></li>
-		<% if @user.admin %>
-			<li>You are the admin for this group. </li>
-		<% end %>
-	</ul>
-	</div>
+	<table class="table table-striped table-hover ">
+		<thead>
+			<tr>
+	      		<th><h4>Email Address</h4></th>
+	      		<th><h4>Group</h4></th>
+	      		<th><h4>Number of Meetings Attended</h4></th>
+	        </tr>
+		</thead>
+		<tbody>
+			 <tr>
+				<td><h4><%= @user.email %></h4></td>
+				<td><h4><%= link_to @group.name, group_path(@group) %></h4></td>
+				<td><h4><%= @user.meetings_attended %></h4></td>
+			</tr>	
+		</tbody>
+	</table><br><br>
 
-	<div>
-		<h4>Upcoming Meetings:</h4>
-		<ul>
-			<% if @meetings != [] %>
-				<% @meetings.each do |meeting| %>
-				<li><%= link_to meeting.name, meeting_path(meeting) %></li>
-				<% end %>
+		<% if @user.admin %>
+			<h4><p class="text-info">You are the admin for <%=@group.name%></p></h4>
+		<% end %><br><br>
+
+		<h3>Upcoming Meetings:</h3>
+		<table class="table table-striped table-hover ">
+			<tbody>
+	 		<tr>
+				<% if @meetings != [] %>
+					<% @meetings.each do |meeting| %>
+					<td><h4><%= link_to meeting.name, meeting_path(meeting) %></h4></td>
+				</tr>
+				<% end %>	
+			</tbody>
+		</table>			
 			<% else %>
-			You have no upcoming meetings. <%= link_to("Create a Meeting", new_meeting_path, {class: "btn btn-primary btn-sm"}) %>
+			<h4>You have no upcoming meetings</h4> <%= link_to("Create a Meeting", new_meeting_path, {class: "btn btn-primary btn-sm"}) %>
 			<% end %>
-		</ul>
-	</div>
-	<br>
+
+
 
 	<%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
 	<%= link_to "Delete Account & Become Illiterate", @user, method: :delete, data: { confirm: "Really?" }, class: "btn btn-danger" %>

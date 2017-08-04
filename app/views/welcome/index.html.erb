@@ -1,12 +1,10 @@
 
 <h3> Managing your book club like shlub? </h3>
-<h1> Welcome to Book Club </h1>
+<h1> Welcome to Book Club </h1><br><br>
 
 
-Sign Up and Start a Group: <%= link_to("Create Group", new_group_path) %><br><br>
+<h4>Sign Up and Start a New Group   <%= link_to("Create Group", new_group_path, {class: "btn btn-primary"}) %></h4>
 
-Sign Up to join a Group: <%= link_to("Join", new_user_path) %><br><br>
-
-Log In: <%= link_to("Sign Back In", login_path) %>
+<h4>Sign Up to Join an Existing Group   <%= link_to("Join", new_user_path, {class: "btn btn-primary"}) %></h4>
 
 

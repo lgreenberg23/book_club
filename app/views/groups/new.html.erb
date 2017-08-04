@@ -1,16 +1,16 @@
-<h1> Create a new Group </h1> 
- <%= form_for @group do |f| %>
- 	<%= f.label "Name" %>
- 	<%= f.text_field :name %>
- 	<br>
- 	<%= f.label "Max Group Size" %>
- 	<%= f.number_field :size %>
- 	<br>
- 	<%= f.label "How often does this group meet?" %>
- 	<%= f.text_field :frequency_of_meeting %>
- 	<br>
- 	<%= f.label "What genre of books does it read?" %>
- 	<%= f.text_field :genres_read %>
- 	<br>
- 	<%= f.submit 'Create your group!' %>
+<h2> Create a new Group </h2> 
+
+ <%= form_for(@group, {class: "form-horizontal"}) do |f| %>
+ <fieldset>
+ 		<h4><%= f.label "Name", class: "col-lg-2 control-label" %></h4>
+ 			<%= f.text_field :name, class: "form-control" %>
+ 		<h4><%= f.label "Max Number of Group Members", class: "col-lg-2 control-label" %></h4>
+ 			<%= f.text_field :size, class: "form-control" %>
+ 		<h4><%= f.label "Meeting Frequency", class: "col-lg-2 control-label" %></h4>
+
+ 			<%= f.text_field :frequency_of_meeting, class: "form-control" %>
+ 		<h4><%= f.label "Preferred Genre to Read", class: "col-lg-2 control-label" %></h4>
+ 			<%= f.text_field :genres_read, class: "form-control" %>
+        <button type="submit" class="btn btn-primary">Submit</button>
  	<% end %>
+ </fieldset>	

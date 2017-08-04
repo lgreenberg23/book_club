@@ -1,12 +1,12 @@
-<h1> Create a new book discussion for your club </h1> 
+<h2> Create a new book discussion for your club </h2> 
 
 <% if @user.meetings_attended > 1 || @user.admin %>
 	
-	<%= form_for @meeting do |f| %>
+	<%= form_for(@meeting, {class: "form-horizontal"}) do |f| %>
 		Meeting date and Time: <%= f.datetime_field :time %><br>
 		Meeting place <%= f.text_field :place %><br>
-		Select a book to read: <%= collection_select(:meeting, :book_id, Book.all, :id, :title, prompt: true) %><br> 
-		Don't see a book you like? <%= link_to 'Add your book', new_book_path %><br>
+		Select a book from the catalog: <%= collection_select(:meeting, :book_id, Book.all, :id, :title, prompt: true) %><br><br>
+		<h3>Don't see a book you like? Create a new book:</h3><br>
 
 		<%= fields_for @book do |fb| %>
        <%= fb.label 'Title:'%>
@@ -26,9 +26,9 @@
 	<% end %>
 <% else %>
 
-	<div> You have to attend at least 2 meetings before you can create one for your group! Look through a list of available meetings to attend. </div>
+	<p>You have to attend at least 2 meetings before you can create one for your group! Look through a list of available meetings to attend.</p>
 
-	<%= link_to "See all Meetings", meetings_path %>
+	<%= link_to("See all Meetings", meetings_path, {class: "btn btn-primary"} )%>
 	
 
 <% end %>

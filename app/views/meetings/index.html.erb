@@ -1,29 +1,43 @@
 
 <h2> Upcoming Meetings </h2>
-<% @mtgs = [] %>
-<% @future_meetings.select do |meeting| %>
-	<% if meeting.group_id == @user.group_id %>
-		<% @mtgs << meeting %>
-			<li><%= link_to meeting.name, meeting_path(meeting) %></li>
+	<table class="table table-striped table-hover ">
+  	<tbody>
+   	 <tr>
+   	 	<% @mtgs = [] %>
+		<% @future_meetings.select do |meeting| %>
+			<% if meeting.group_id == @user.group_id %>	
+			<% @mtgs << meeting %>
+			<td><h4><%= link_to meeting.name, meeting_path(meeting) %></h4></td>
 		<% end %>	
-	<% end %><br>
+	    </tr>	
+	<% end %>
+	</tbody>
+</table><br>
+
+	
 <% if @mtgs.empty? %>
-	<p>There are no upcoming metings! <%= link_to("Create a new Meeting", new_meeting_path, {class: "btn btn-primary btn-sm"} )%></p>	
+	<p><h4>There are no upcoming metings!</h4> <%= link_to("Create a new Meeting", new_meeting_path, {class: "btn btn-primary btn-sm"} )%></p>	
 	<% end %>
 
 <h2> Past Meetings </h2>
-<% @mtgs = [] %>
-<% @past_meetings.select do |meeting| %>
-	<% if meeting.group_id == @user.group_id %>
-		<% @mtgs << meeting %>
-			<li><%= link_to meeting.name, meeting_path(meeting) %></li> 
+	<table class="table table-striped table-hover ">
+  	<tbody>
+   	 <tr>
+		<% @mtgs = [] %>
+		<% @past_meetings.select do |meeting| %>
+			<% if meeting.group_id == @user.group_id %>
+				<% @mtgs << meeting %>
+					<td><h4><%= link_to meeting.name, meeting_path(meeting) %></h4></td> 
+				<% end %>
+			</tr>	
 		<% end %>
-	<% end %><br>
-	
-	<% @mtgs.empty? %>
-	<p>Your group has never met!</p><br>
+		</tbody>
+</table>	
 
-<h4>Eager to read? <%= link_to("Create a new Meeting", new_meeting_path, {class: "btn btn-primary"})%> </h4> 
+	<% @mtgs.empty? %>
+	<p><h4>Your group has never met!</h4></p><br>
+
+<br><h4>Eager to read? <%= link_to("Create a new Meeting", new_meeting_path, {class: "btn btn-primary"})%> </h4> 
 
 
 
