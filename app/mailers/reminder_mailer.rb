@@ -4,7 +4,7 @@ class ReminderMailer < ApplicationMailer
  
   def welcome_email(user)
     @user = user
-    @url  = 'http://bookclubr.com/login'
+    @url  = 'http://bookclbbr.com/login'
     mail(to: @user.email, subject: 'Welcome to Your Book Club Manager')
   end
 

@@ -1,21 +1,37 @@
-<h2> Books <%= @group.name %> has read </h2>
-<ul>
-<% @books.each do |book| %>
-<li>
-	<%= link_to(book.title.split.map(&:capitalize).join(' '), book_path(book)) %><br>
-	</li>
-	<% end %>
-	</ul>
 
-<br><br>
+<h2> Books <%= link_to @group.name, group_path(@group) %> has read </h2>
+
+<% if @books == [] %>
+	<br><h4>Your group hasn't ready any books! <%= link_to( "Create a Meeting", meetings_path, {class: "btn btn-primary btn-sm"}) %></h4>
+<% else %>
+	<table class="table table-striped table-hover ">
+		<tbody>
+			<tr>
+		<% @books.each do |book| %>
+			<td><h4><%= link_to(book.title.split.map(&:capitalize).join(' '), book_path(book)) %></h4></td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+<% end %>
+
+<br>
 <h2> All Books in the Catalog </h2>
-<ul>
-<% @all_books.each do |book| %>
-<li>
-	<%= link_to(book.title.split.map(&:capitalize).join(' '), book_path(book)) %><br>
-	</li>
-	<% end %>
-	</ul>
-	<br>
+	<table class="table table-striped table-hover ">
+			<thead>
+				<tr>
+					<td><h4>Title</h4></td>
+					<td><h4>Author</h4></td>
+				</tr>
+			<tbody>
+				<tr>
+				<% @all_books.each do |book| %>
+					<td><h4><%= link_to(book.title.split.map(&:capitalize).join(' '), book_path(book)) %></h4></td>
+					<td><h4><%= book.author.split.map(&:capitalize).join(' ') %></h4></td>
+					<% end %>
+			</tr>
+		</tbody>
+	</table>
 
-	<%= link_to("Add a book to the catalog", new_book_path) %>
+
+<%= link_to("Add a Book to the Catalog", new_book_path, {class: "btn btn-primary"}) %>

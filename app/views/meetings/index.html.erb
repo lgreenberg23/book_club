@@ -8,7 +8,7 @@
 		<% end %>	
 	<% end %><br>
 <% if @mtgs.empty? %>
-	<p>There are no upcoming metings! <%= link_to "Create a new Meeting", new_meeting_path %></p>	
+	<p>There are no upcoming metings! <%= link_to("Create a new Meeting", new_meeting_path, {class: "btn btn-primary btn-sm"} )%></p>	
 	<% end %>
 
 <h2> Past Meetings </h2>
@@ -21,9 +21,9 @@
 	<% end %><br>
 	
 	<% @mtgs.empty? %>
-	<p>Your group has never met!</p>
+	<p>Your group has never met!</p><br>
 
-<h3>Not satisfied? <%= link_to "Create a new Meeting", new_meeting_path %></h3>
+<h4>Eager to read? <%= link_to("Create a new Meeting", new_meeting_path, {class: "btn btn-primary"})%> </h4> 
 
 
 

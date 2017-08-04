@@ -13,20 +13,21 @@
 	</div>
 
 	<div>
-	<ul>
-		<% if @meetings != nil %>
 		<h4>Upcoming Meetings:</h4>
-			<% @meetings.each do |meeting| %>
-			<li><%= link_to meeting.name, meeting_path(meeting) %></li>
+		<ul>
+			<% if @meetings != [] %>
+				<% @meetings.each do |meeting| %>
+				<li><%= link_to meeting.name, meeting_path(meeting) %></li>
+				<% end %>
+			<% else %>
+			You have no upcoming meetings. <%= link_to("Create a Meeting", new_meeting_path, {class: "btn btn-primary btn-sm"}) %>
 			<% end %>
-		<% else %>
-		You have no upcoming meetings.
-		<% end %>
-	</ul>
+		</ul>
 	</div>
+	<br>
 
-	<%= link_to "Edit Profile", edit_user_path(@user) %><br>
-	<%= link_to "Delete Account & Become Illiterate", @user, method: :delete, data: { confirm: "Really?" } %>
+	<%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-primary" %>
+	<%= link_to "Delete Account & Become Illiterate", @user, method: :delete, data: { confirm: "Really?" }, class: "btn btn-danger" %>
 
 	<br>
 

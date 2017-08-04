@@ -39,7 +39,7 @@
       <% if logged_in %>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="<%= user_path(logged_in_user) %>">Happy Reading, <%= logged_in_user.name %>!</a></li>
-          <li><%= button_to "Logout", logout_path, method: :post %></li>
+        <li><%= button_to( "Logout",logout_path, {class: "btn btn-primary btn-lg"})%></li>
         </ul>
       <% else %>
                 <ul class="nav navbar-nav navbar-right">
@@ -53,9 +53,18 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+
     <div class="container">
-    <%= image_tag "bg.jpg", size: "375x550", style: "float :right" %>
-    <%= yield %>
-</div>
+      <div class="row">
+        <div class="container col-md-8">
+          <%= yield %>
+        </div>
+        <div class="container col-md-4">
+        <%= image_tag "bg.jpg", size: "375x550" %> 
+        </div>
+      </div>
+    </div>
+
+
   </body>
 </html>
