@@ -2,14 +2,14 @@
 
  <%= form_for(@group, {class: "form-horizontal"}) do |f| %>
  <fieldset>
- 		<h4><%= f.label "Name", class: "col-lg-2 control-label" %></h4>
+ 		<h4><%= f.label "Name" %></h4>
  			<%= f.text_field :name, class: "form-control" %>
- 		<h4><%= f.label "Max Number of Group Members", class: "col-lg-2 control-label" %></h4>
+ 		<h4><%= f.label "Max Number of Group Members" %></h4>
  			<%= f.text_field :size, class: "form-control" %>
- 		<h4><%= f.label "Meeting Frequency", class: "col-lg-2 control-label" %></h4>
+ 		<h4><%= f.label "Meeting Frequency" %></h4>
 
  			<%= f.text_field :frequency_of_meeting, class: "form-control" %>
- 		<h4><%= f.label "Preferred Genre to Read", class: "col-lg-2 control-label" %></h4>
+ 		<h4><%= f.label "Preferred Genre to Read" %></h4>
  			<%= f.text_field :genres_read, class: "form-control" %>
         <button type="submit" class="btn btn-primary">Submit</button>
  	<% end %>
