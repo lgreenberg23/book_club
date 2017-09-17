@@ -1,4 +1,4 @@
-require 'byebug'
+
 
 class GroupsController < ApplicationController
 

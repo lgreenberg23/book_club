@@ -1,4 +1,4 @@
- require 'byebug'
+
 
 class MeetingsController < ApplicationController
 
