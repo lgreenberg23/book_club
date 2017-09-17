@@ -3,8 +3,11 @@
 Book Clubbr
 
 This webapp is used to manage the logistics of a book club.  A club organizer can create a group as a admin, and then additional members can join the group.  
-Members can create meetings (if they have attended two meetings; the admin can create the first two), suggest books for the group's wishlist, upvote those books on the wishlist, and add books to the site's catalogue. Members can also view their past meetings and see what books their group has read in the past. 
+
+Members can create meetings (if they have attended two meetings; the admin can create the first two), suggest books for the group's wishlist, upvote those books on the wishlist, and add books to the site's catalogue. Members can also view their past meetings and see what books their group has read in the past.
+
 Upon signup, members will receive a welcome email, and they will receive a reminder for their next meeting two days before the meeting is set to occur.
+
 Happy reading! 
 
 

@@ -13,7 +13,6 @@ class Book < ApplicationRecord
 	has_many :groups, through: :meetings 
 	has_many :wishlist_books
 	has_many :wishlists, through: :wishlist_books
-	# accepts_nested_attributes_for :meetings
+
 	
-	# has many wish_lists
 end

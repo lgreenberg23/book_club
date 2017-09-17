@@ -10,7 +10,6 @@ class BooksController < ApplicationController
 
 	def new
 		@book = Book.new
-		# @book.meetings.build(meeting: 'new')
 	end
 
 	def create

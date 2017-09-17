@@ -1,4 +1,4 @@
-require 'byebug'
+ require 'byebug'
 
 class MeetingsController < ApplicationController
 
@@ -24,14 +24,12 @@ class MeetingsController < ApplicationController
 		@book = Book.new
 		@meeting.book = @book 
 		@user = current_user
-		# else, flash[:message] = "You need to read more books first."
 
 	end
 
 	def create
 
 		@book = ''
-		# byebug
 		if params[:book]
 			@book = Book.new(book_params)
 		else
@@ -46,14 +44,12 @@ class MeetingsController < ApplicationController
 		@user = current_user
 
 		@meeting.group_id = @user.group_id
-		# @meeting.book_id = params[:meeting][:book_id].to_i
 		
 		# This would be all of the members in the group
 		# @meeting.users_meetings_id = params[:meeting][:users_meetings_id].to_i
 		
 		@meeting.save
-		# @user.meetings_attended
-		 # byebug
+
 		redirect_to meeting_path(@meeting)
 	end
 
@@ -88,7 +84,6 @@ class MeetingsController < ApplicationController
 		@meeting = current_meeting
 		@meeting.destroy
 		redirect_to meetings_path
-		#do you want to redirect to all the meetings or back to the group show page?
 	end
 
 	def attend
@@ -100,7 +95,7 @@ class MeetingsController < ApplicationController
 
 		respond_to do |format|
 	      if @mtg_usr.save
-	        # Tell the UserMailer to send a welcome email after save
+	        # Tell the UserMailer to send a reminder email after save, two days before the meeting
 	        ReminderMailer.reminder_email(@user, @meeting, @group).deliver_later(wait_until: (@meeting.time - 2.days))
 	 
 	        format.html { render action: 'attend', notice: 'User was successfully created.' }
@@ -115,7 +110,6 @@ class MeetingsController < ApplicationController
 	def unattend
 		@user = current_user
 		@meeting = current_meeting
-				# byebug
 		meet_user = MeetingUser.find_by(user: @user, meeting: @meeting)
 		meet_user.destroy
 
@@ -129,7 +123,6 @@ class MeetingsController < ApplicationController
 	end
 
 	def book_params
-		# byebug
 		params.require(:book).permit(:title, :author, :genre, :description, :length_in_pages)
 	end
 
