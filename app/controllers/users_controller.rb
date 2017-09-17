@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 	      else
 	        format.html { render action: 'new' }
 	        format.json { render json: @user.errors, status: :unprocessable_entity }
+	       	flash.now[:error] = @user.errors.full_messages[0]
 	      end
 	    end
 

@@ -1,4 +1,4 @@
-<h1>Edit yo stuff:</h1>
+<h1>Edit your information:</h1>
 
 <%= form_for @user do |f| %>
 	Select a group to join: <%= collection_select(:user, :group_id, Group.all, :id, :name, prompt: true) %><br>
