@@ -1,6 +1,5 @@
 class Book < ApplicationRecord
 
-	acts_as_votable
 
 	validates :title, uniqueness: true
 	validates :author, presence: true

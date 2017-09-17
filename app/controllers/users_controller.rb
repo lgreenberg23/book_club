@@ -71,7 +71,7 @@ class UsersController < ApplicationController
 		@user = current_user
 		@user.destroy
 
-		redirect_to users_path
+		redirect_to login_path
 	end
 
 	private

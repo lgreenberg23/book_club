@@ -17,6 +17,7 @@
 = require jquery
 = require jquery-ui
 = require jquery_ujs
+= javascript_include_tag :defaults
 
 ('#datetimepicker2').data("DateTimePicker").date(new Date());
 
