@@ -15,7 +15,7 @@ Getting Started
 
 To set up your environment, bundle install to make sure the correct gems included in our gemfile are installed to run this application.
 
-This application was developed on Rails 4 and Ruby 2.3.1
+This application was developed on Rails 5 and Ruby 2.3.1
 
 The database is sqlite3. To run on a local machine you can run rake db:create and rake db:migrate.
 There is no seed data - feel free to add the books of your choice!
