@@ -1,25 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Book Clubbr
 
-Things you may want to cover:
+This webapp is used to manage the logistics of a book club.  A club organizer can create a group as a admin, and then additional members can join the group.  
 
-* Ruby version
+Members can create meetings (if they have attended two meetings; the admin can create the first two), suggest books for the group's wishlist, upvote those books on the wishlist, and add books to the site's catalogue. Members can also view their past meetings and see what books their group has read in the past.
 
-* System dependencies
+Upon signup, members will receive a welcome email, and they will receive a reminder for their next meeting two days before the meeting is set to occur.
 
-* Configuration
+Happy reading! 
 
-* Database creation
 
-* Database initialization
+Getting Started
 
-* How to run the test suite
+To set up your environment, bundle install to make sure the correct gems included in our gemfile are installed to run this application.
 
-* Services (job queues, cache servers, search engines, etc.)
+This application was developed on Rails 5 and Ruby 2.3.1
 
-* Deployment instructions
+The database is sqlite3. To run on a local machine you can run rake db:create and rake db:migrate.
+There is no seed data - feel free to add the books of your choice!
 
-* ...
-# book_club
+The app is on heroku at:
+
+
+
+Authors
+
+Jacob H Lyon and Lauren Greenberg, made at Flatiron School.
+
+
+
+Acknowledgments
+
+Thanks to Meryl Dakin, Johann Kerr, and Alex Griffith for their guidance.

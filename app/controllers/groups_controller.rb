@@ -1,4 +1,4 @@
-require 'byebug'
+
 
 class GroupsController < ApplicationController
 
@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
 	end
 
 	def create 
-		# byebug
 		@group = Group.create(group_params)
 		@wishlist = Wishlist.create(group_id: @group.id)
 		redirect_to new_admin_path

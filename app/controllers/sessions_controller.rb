@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		# byebug
 		user = User.find_by(name: params[:user][:name])
 		authenticated = user.try(:authenticate, params[:user][:password])
 		if authenticated

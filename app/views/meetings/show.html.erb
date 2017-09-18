@@ -29,8 +29,8 @@
    	 <tr>
 		<% @attendees.each do |user|  %>
 		<th><h4><%= link_to user.name, user_path(user) %></h4></th>
-		<% end %>
     </tr>
+    <% end %>
 	</tbody>
 </table><br>
 

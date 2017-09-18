@@ -1,4 +1,3 @@
-require 'byebug'
 
 class UsersController < ApplicationController
 
@@ -14,7 +13,6 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		@user.group_id = params[:user][:group_id].to_i
-		# @user.save
 
 		respond_to do |format|
 	      if @user.save
@@ -29,14 +27,10 @@ class UsersController < ApplicationController
 	        format.json { render json: @user.errors, status: :unprocessable_entity }
 	      end
 	    end
-
-
-		# redirect_to user_path(@user)
 	end
 
 	def admin
 		@user = User.new
-		# @group = Group.find(params[:id])
 	end
 
 
@@ -50,7 +44,6 @@ class UsersController < ApplicationController
 		meeting_ids = meeting_users.collect {|mtg_user| mtg_user.meeting_id}
 		
 		#this should be an array of meeting instances
-		# byebug
 		meetings = meeting_ids.collect {|id| Meeting.find_by(id: id)}
 		@meetings = meetings.select {|mtg| mtg.time > Time.now}
 
@@ -71,7 +64,7 @@ class UsersController < ApplicationController
 		@user = current_user
 		@user.destroy
 
-		redirect_to users_path
+		redirect_to login_path
 	end
 
 	private
@@ -82,7 +75,6 @@ class UsersController < ApplicationController
 
 		def current_user
 			if params[:id] != nil
-				# byebug
 			User.find(params[:id])
 			end
 		end

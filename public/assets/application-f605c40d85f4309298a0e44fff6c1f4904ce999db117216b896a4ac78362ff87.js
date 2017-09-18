@@ -25,3 +25,4 @@ JQuery ->
 	(".dropdown-toggle").dropdown()
 
 = require_tree .
+;
