@@ -68,7 +68,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'bookclubbr@gmail.com',
-    password:             'passwordpassword',
+    password:             '***********',
     authentication:       'plain',
     enable_starttls_auto: true  }
 
